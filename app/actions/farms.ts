@@ -73,7 +73,6 @@ export const updateFarm = async (
 };
 
 export const getFarms = async () => {
-  'use cache';
   const supabase = await getSupabaseServer();
 
   const { data, error } = await supabase

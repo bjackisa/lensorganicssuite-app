@@ -130,7 +130,6 @@ export const deleteUser = async (userId: string) => {
 };
 
 export const getUsers = async () => {
-  'use cache';
   const supabase = await getSupabaseServer();
 
   const { data, error } = await supabase

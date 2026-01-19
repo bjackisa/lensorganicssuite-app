@@ -73,7 +73,6 @@ export const updateCrop = async (
 };
 
 export const getCrops = async (statusFilter?: 'active' | 'inactive' | 'discontinued') => {
-  'use cache';
   const supabase = await getSupabaseServer();
 
   let query = supabase.from('crops').select('*').order('name', { ascending: true });
