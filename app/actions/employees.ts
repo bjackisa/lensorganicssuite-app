@@ -61,7 +61,6 @@ export const createEmployee = async (
 };
 
 export const getEmployees = async (farmId?: string, status?: 'active' | 'inactive' | 'suspended') => {
-  'use cache';
   const supabaseServer = await getSupabaseServer();
 
   let query = supabaseServer

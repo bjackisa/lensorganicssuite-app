@@ -46,7 +46,6 @@ export const createEquipment = async (
 };
 
 export const getEquipment = async (farmId?: string) => {
-  'use cache';
   const supabaseServer = await getSupabaseServer();
 
   let query = supabaseServer.from('equipment').select('*, farms(name)').order('created_at', { ascending: false });

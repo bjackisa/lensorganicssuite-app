@@ -53,7 +53,6 @@ export const getFarmActivities = async (
   cropId?: string,
   stage?: 'farming' | 'processing' | 'sale'
 ) => {
-  'use cache';
   const supabaseServer = await getSupabaseServer();
 
   let query = supabaseServer
@@ -80,7 +79,6 @@ export const getFarmActivities = async (
 };
 
 export const getCropActivityTimeline = async (cropId: string) => {
-  'use cache';
   const supabaseServer = await getSupabaseServer();
 
   const { data, error } = await supabaseServer

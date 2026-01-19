@@ -100,7 +100,6 @@ export const createReceipt = async (
 };
 
 export const getInvoices = async (farmId?: string, status?: 'pending' | 'paid' | 'overdue') => {
-  'use cache';
   const supabaseServer = await getSupabaseServer();
 
   let query = supabaseServer
@@ -126,7 +125,6 @@ export const getInvoices = async (farmId?: string, status?: 'pending' | 'paid' |
 };
 
 export const getReceipts = async (invoiceId?: string) => {
-  'use cache';
   const supabaseServer = await getSupabaseServer();
 
   let query = supabaseServer
@@ -188,7 +186,6 @@ export const logExpense = async (
 };
 
 export const getFinancialSummary = async (farmId?: string, startDate?: string, endDate?: string) => {
-  'use cache';
   const supabaseServer = await getSupabaseServer();
 
   try {

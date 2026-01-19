@@ -46,7 +46,6 @@ export const createProcessingPlant = async (
 };
 
 export const getProcessingPlants = async (farmId?: string) => {
-  'use cache';
   const supabaseServer = await getSupabaseServer();
 
   let query = supabaseServer
