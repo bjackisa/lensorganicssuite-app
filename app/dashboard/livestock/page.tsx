@@ -1,9 +1,8 @@
-import Link from 'next/link';
 import { getSupabaseServer } from '@/lib/supabase-server';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Egg, Heart, TrendingUp, Calendar } from 'lucide-react';
+import { Egg, Calendar } from 'lucide-react';
+import { AddLivestockDialog, LogEggProductionDialog } from '@/components/livestock/add-livestock-dialog';
 
 async function getLivestockBatches() {
   const supabase = await getSupabaseServer();
@@ -49,10 +48,7 @@ export default async function LivestockPage() {
           <h1 className="text-3xl font-bold text-gray-900">Livestock Management</h1>
           <p className="text-gray-600 mt-1">Manage poultry batches, health records, and egg production</p>
         </div>
-        <Button className="gap-2 bg-amber-600 hover:bg-amber-700 w-fit">
-          <Plus className="h-4 w-4" />
-          New Livestock Batch
-        </Button>
+        <AddLivestockDialog />
       </div>
 
       {/* Stats */}
@@ -98,9 +94,7 @@ export default async function LivestockPage() {
             <CardTitle>Livestock Batches</CardTitle>
             <CardDescription>All poultry and livestock batches</CardDescription>
           </div>
-          <Button variant="outline" size="sm">
-            <Plus className="h-4 w-4 mr-1" /> Add Batch
-          </Button>
+          <AddLivestockDialog buttonText="Add Batch" />
         </CardHeader>
         <CardContent>
           {batches.length > 0 ? (
@@ -151,9 +145,7 @@ export default async function LivestockPage() {
             <CardTitle>Recent Egg Production</CardTitle>
             <CardDescription>Daily egg collection records</CardDescription>
           </div>
-          <Button variant="outline" size="sm">
-            <Plus className="h-4 w-4 mr-1" /> Log Production
-          </Button>
+          <LogEggProductionDialog />
         </CardHeader>
         <CardContent>
           {eggRecords.length > 0 ? (

@@ -1,12 +1,9 @@
 import Link from 'next/link';
 import { getSupabaseServer } from '@/lib/supabase-server';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Plus, MapPin, Users, Boxes, Leaf, Egg, Fish, 
-  ArrowRight, Calendar, TrendingUp 
-} from 'lucide-react';
+import { MapPin, Leaf, Egg, Fish, Calendar } from 'lucide-react';
+import { AddFarmDialog } from '@/components/farms/add-farm-dialog';
 
 async function getFarms() {
   const supabase = await getSupabaseServer();
@@ -65,10 +62,7 @@ export default async function FarmsPage() {
           <h1 className="text-3xl font-bold text-gray-900">Farms</h1>
           <p className="text-gray-600 mt-1">Manage all your farm locations and operations</p>
         </div>
-        <Button className="gap-2 bg-emerald-600 hover:bg-emerald-700 w-fit">
-          <Plus className="h-4 w-4" />
-          Add New Farm
-        </Button>
+        <AddFarmDialog />
       </div>
 
       {/* Stats */}
@@ -158,10 +152,7 @@ export default async function FarmsPage() {
               <Leaf className="h-12 w-12 mx-auto mb-4 text-gray-400" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">No farms yet</h3>
               <p className="text-gray-600 mb-4">Get started by adding your first farm</p>
-              <Button className="bg-emerald-600 hover:bg-emerald-700">
-                <Plus className="h-4 w-4 mr-2" />
-                Add Your First Farm
-              </Button>
+              <AddFarmDialog />
             </CardContent>
           </Card>
         )}

@@ -1,9 +1,8 @@
-import Link from 'next/link';
 import { getSupabaseServer } from '@/lib/supabase-server';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Leaf, Calendar, TrendingUp, Sprout } from 'lucide-react';
+import { Leaf, Calendar, Sprout } from 'lucide-react';
+import { AddPlantingBatchDialog } from '@/components/crops/add-planting-batch-dialog';
 
 async function getCropTypes() {
   const supabase = await getSupabaseServer();
@@ -46,10 +45,7 @@ export default async function CropsPage() {
           <h1 className="text-3xl font-bold text-gray-900">Crop Management</h1>
           <p className="text-gray-600 mt-1">Manage crop types, planting batches, and growth records</p>
         </div>
-        <Button className="gap-2 bg-emerald-600 hover:bg-emerald-700 w-fit">
-          <Plus className="h-4 w-4" />
-          New Planting Batch
-        </Button>
+        <AddPlantingBatchDialog />
       </div>
 
       {/* Stats */}

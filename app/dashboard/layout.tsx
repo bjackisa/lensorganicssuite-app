@@ -1,7 +1,7 @@
 import React from "react"
 import { checkAuth, getUserRole } from '@/lib/supabase-server';
-import { SidebarNav } from '@/components/dashboard/sidebar-nav';
 import { TopNav } from '@/components/dashboard/top-nav';
+import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 
 export const metadata = {
   title: 'Dashboard - Lens Organics Suite',
@@ -18,12 +18,9 @@ export default async function DashboardLayout({
   return (
     <div className="min-h-screen bg-background">
       <TopNav user={user} userRole={userRole} />
-      <div className="flex">
-        <SidebarNav userRole={userRole} />
-        <main className="flex-1 overflow-auto">
-          <div className="p-4 md:p-8">{children}</div>
-        </main>
-      </div>
+      <DashboardShell userRole={userRole}>
+        {children}
+      </DashboardShell>
     </div>
   );
 }

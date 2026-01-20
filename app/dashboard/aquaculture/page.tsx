@@ -1,9 +1,8 @@
-import Link from 'next/link';
 import { getSupabaseServer } from '@/lib/supabase-server';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Fish, Droplets, TrendingUp, Calendar, Thermometer } from 'lucide-react';
+import { Fish, Calendar } from 'lucide-react';
+import { AddPondDialog, LogStockingDialog } from '@/components/aquaculture/add-pond-dialog';
 
 async function getFishPonds() {
   const supabase = await getSupabaseServer();
@@ -49,10 +48,7 @@ export default async function AquaculturePage() {
           <h1 className="text-3xl font-bold text-gray-900">Aquaculture Management</h1>
           <p className="text-gray-600 mt-1">Manage fish ponds, stocking, water quality, and harvests</p>
         </div>
-        <Button className="gap-2 bg-blue-600 hover:bg-blue-700 w-fit">
-          <Plus className="h-4 w-4" />
-          Add New Pond
-        </Button>
+        <AddPondDialog />
       </div>
 
       {/* Stats */}
@@ -98,9 +94,7 @@ export default async function AquaculturePage() {
             <CardTitle>Fish Ponds</CardTitle>
             <CardDescription>All registered fish ponds</CardDescription>
           </div>
-          <Button variant="outline" size="sm">
-            <Plus className="h-4 w-4 mr-1" /> Add Pond
-          </Button>
+          <AddPondDialog />
         </CardHeader>
         <CardContent>
           {ponds.length > 0 ? (
@@ -155,9 +149,7 @@ export default async function AquaculturePage() {
             <CardTitle>Recent Stocking</CardTitle>
             <CardDescription>Latest fish stocking records</CardDescription>
           </div>
-          <Button variant="outline" size="sm">
-            <Plus className="h-4 w-4 mr-1" /> Log Stocking
-          </Button>
+          <LogStockingDialog />
         </CardHeader>
         <CardContent>
           {stockingRecords.length > 0 ? (

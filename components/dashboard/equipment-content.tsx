@@ -70,10 +70,31 @@ export function EquipmentContent() {
     purchasePrice: '',
   });
 
-  const handleAddEquipment = () => {
-    console.log('[v0] Adding equipment:', newEquipment);
-    setOpenDialog(false);
-    setNewEquipment({ name: '', farm: '', category: '', purchaseDate: '', purchasePrice: '' });
+  const handleAddEquipment = async () => {
+    try {
+      const response = await fetch('/api/equipment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: newEquipment.name,
+          equipment_type: newEquipment.category,
+          purchase_date: newEquipment.purchaseDate || null,
+          purchase_cost: newEquipment.purchasePrice ? parseFloat(newEquipment.purchasePrice) : null,
+          status: 'available',
+          condition: 'good',
+        }),
+      });
+      if (response.ok) {
+        setOpenDialog(false);
+        setNewEquipment({ name: '', farm: '', category: '', purchaseDate: '', purchasePrice: '' });
+        window.location.reload();
+      } else {
+        alert('Failed to add equipment');
+      }
+    } catch (error) {
+      console.error('Error adding equipment:', error);
+      alert('An error occurred');
+    }
   };
 
   const getStatusBadgeColor = (status: string) => {
